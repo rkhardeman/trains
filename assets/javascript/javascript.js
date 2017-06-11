@@ -26,7 +26,7 @@
     event.preventDefault();
     var trainName = $("#train-name").val().trim();
     var trainDestination =$("#destination").val().trim();
-    var firstTrain =$("#first-rain").val().trim();
+    var firstTrain =$("#first-train").val().trim();
     var trainFrequency = $("#frequency").val().trim();
     //create new train
     var newTrain = {
