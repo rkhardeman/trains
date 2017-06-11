@@ -43,5 +43,10 @@
     console.log(newTrain.time);
     console.log(newTrain.frequency);
 
+    //clear text after adding train
+    $("#train-name").val("");
+    $("#destination").val("");
+    $("#first-train").val("");
+    $("#frequency").val("");
   });
 
