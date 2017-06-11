@@ -11,13 +11,37 @@
 
   //Create a variable to reference the database
   var database = firebase.database();
-  //All trains will be stored in firebase in this directory
-  var train = database.ref("/trainsList")
+  //Store trains in firebase
+  var trainRef = database.ref("/trainsList")
 
   //create var for initial values
   var name = "";
   var destination = "";
   var time = 0;
   var frequency = 00;
-
   
+
+//when clicking submit a new train will be created and stored in firebase
+  $("#submitTrain").on("click", function(){
+    event.preventDefault();
+    var trainName = $("#train-name").val().trim();
+    var trainDestination =$("#destination").val().trim();
+    var firstTrain =$("#first-rain").val().trim();
+    var trainFrequency = $("#frequency").val().trim();
+    //create new train
+    var newTrain = {
+      name: trainName,
+      destination: trainDestination,
+      time: firstTrain,
+      frequency: trainFrequency
+    }
+    //push new train to firebase
+    database.ref("/trainList").push(newTrain);
+
+    console.log(newTrain.name);
+    console.log(newTrain.destination);
+    console.log(newTrain.time);
+    console.log(newTrain.frequency);
+
+  });
+
