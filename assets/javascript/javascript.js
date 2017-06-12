@@ -31,7 +31,7 @@ $("#submitTrain").on("click", function(){
   var firstTrain =$("#first-train").val().trim();
   var trainFrequency = $("#frequency").val().trim();
 
-  //create new train
+  //Create new train
   var newTrain = {
     name: trainName,
     destination: trainDestination,
@@ -39,7 +39,7 @@ $("#submitTrain").on("click", function(){
     frequency: trainFrequency
   }
 
-  //push new train to firebase
+  //Push new train to firebase
   database.ref("/trainList").push(newTrain);
 
   console.log(newTrain.name);
@@ -47,7 +47,7 @@ $("#submitTrain").on("click", function(){
   console.log(newTrain.time);
   console.log(newTrain.frequency);
 
-  //clear text after adding train
+  //Clear text after adding train
   $("#train-name").val("");
   $("#destination").val("");
   $("#first-train").val("");
@@ -55,17 +55,30 @@ $("#submitTrain").on("click", function(){
 });
 
 
-//when a child is created create a snapshot of the added child
+//When a child is created create a snapshot of the added child
 database.ref("/trainList").on("child_added", function(childSnapshot,prevChildKey){
   var trainName = childSnapshot.val().name;
   var trainDestination = childSnapshot.val().destination;
   var firstTrain = childSnapshot.val().time;
   var trainFrequency = childSnapshot.val().frequency;
 
-    //console log for troubleshooting
+    //Console log for troubleshooting
     console.log(trainName);
     console.log(trainDestination);
     console.log(time);
     console.log(frequency);
-})
+
+  //First train time minus one year
+  var convertedTime = moment(time, "HH:mm").subtract(1, "years");
+  console.log(convertedTime);
+
+  //Get the current time
+  var currentTime = moment();
+  //Console log current time to make sure it works
+  console.log("Current time is " + moment(currentTime).format("HH:mm"));
+
+//When a new child is added append the new train to the table
+$("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
+  firstTrain + "</td><td>");
+});
 
