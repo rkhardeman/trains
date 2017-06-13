@@ -76,6 +76,10 @@ database.ref("/trainList").on("child_added", function(childSnapshot,prevChildKey
   var currentTime = moment();
   //Console log current time to make sure it works
   console.log("Current time is " + moment(currentTime).format("HH:mm"));
+  //Get the difference between current time and first train
+  var timeDifference = moment().diff(moment(convertedTime),"minutes");
+  //Console log time differnece
+  console.log(timeDifference);
 
 //When a new child is added append the new train to the table
 $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
